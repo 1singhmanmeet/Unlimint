@@ -11,15 +11,20 @@ class JokesRepoImpl(private val apiService: ApiService, private val jokeDao: Jok
 
         try {
             if (isFirst) {
-                return jokeDao.getJokes().map { it.joke }
+                val savedJokes=jokeDao.getJokes().map { it.joke }
+                if(savedJokes.isNotEmpty())
+                    return savedJokes
             }
             val newJoke = apiService.getJokes()
-            val jokesList=jokeDao.getJokes()
+            val jokesList=jokeDao.getJokes().toMutableList()
             if(jokesList.size==10){
+                jokesList.removeAt(0)
                 jokeDao.removeJoke(jokesList.first())
             }
             jokeDao.saveJoke(JokeModel(newJoke))
-            return jokeDao.getJokes().map { it.joke }
+            val finalList=jokesList.map { it.joke }.toMutableList()
+            finalList.add(newJoke)
+            return finalList
         } catch (e: Exception) {
             e.printStackTrace()
         }

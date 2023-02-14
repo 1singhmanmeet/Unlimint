@@ -20,6 +20,7 @@ class JokesViewModel constructor(private val jokesUseCase: JokesUseCase) : ViewM
             viewModelScope,
             object : BaseResponse<List<String>> {
                 override fun onSuccess(result: List<String>) {
+                    Log.e("ViewModel","listSize: ${result.size}")
                     jokesList = result.toMutableList()
                     jokesData_.value = jokesList
                 }

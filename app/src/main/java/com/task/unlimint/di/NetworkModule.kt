@@ -46,11 +46,3 @@ fun createService(retrofit: Retrofit): ApiService {
     return retrofit.create(ApiService::class.java)
 }
 
-fun createJokesRepo(apiService: ApiService): JokesRepo {
-    return JokesRepoImpl(apiService)
-}
-
-fun createJokesUseCase(jokesRepo: JokesRepo): JokesUseCase {
-    return JokesUseCase(jokesRepo)
-}
-

@@ -7,7 +7,6 @@ class JokesUseCase constructor(
     private val jokesRepo: JokesRepo
 ) : BaseUseCase<List<String>>() {
 
-    var isFirst=true
-    override suspend fun run()=jokesRepo.getJokes(isFirst)
+    override suspend fun run(isFirst:Boolean)=jokesRepo.getJokes(isFirst)
 
 }

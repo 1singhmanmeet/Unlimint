@@ -7,6 +7,6 @@ import org.koin.dsl.module
 
 val AppModule = module {
     viewModel { JokesViewModel(get()) }
-    single { createJokesRepo(get()) }
+    single { createJokesRepo(get(),get()) }
     single { createJokesUseCase(get()) }
 }

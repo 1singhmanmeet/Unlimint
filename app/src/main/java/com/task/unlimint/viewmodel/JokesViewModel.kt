@@ -7,13 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.task.domain.usecase.JokesUseCase
 import com.task.domain.usecase.base.BaseResponse
-import com.task.unlimint.addToStart
 
 class JokesViewModel constructor(private val jokesUseCase: JokesUseCase) : ViewModel() {
 
     var jokesList: MutableList<String> = mutableListOf()
     private val jokesData_ = MutableLiveData<List<String>>()
-    val jokesData = jokesData_
+    val jokesData:LiveData<List<String>> = jokesData_
 
     fun getJokes() {
         jokesUseCase.invoke(
